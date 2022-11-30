@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion d'articles dans un magasin de vente de produits cosmétiques</title>
+</head>
+<body>
+
+<!--formulaire d'inscripition-->
+
+    <Form onsubmit="return false">
+        <label for="">Nom</label>
+        <input type="text" id="nom">
+        <label for="">Marque</label>
+        <input type="text" id="marque">
+        <label for="">Prix</label>
+        <input type="text" id="prix">
+        <label for="">Date de production</label>
+        <input type="date" id="date">
+        <label for="">type</label>
+        <select name="" id="select">
+        <option value="choisissez un type">choisissez un type</option>
+        <option value="hygiène et toilette">hygiène et toilette</option>
+        <option value="soins esthétiques">soins esthétiques</option>
+        <option value="produits solaires">produits solaires</option>
+        <option value="beauté des mains et des pieds">beauté des mains et des pieds</option>
+        <option value="produits de maquillage">produits de maquillage</option>
+        <option value="entretien capillaires">entretien capillaires</option>
+        <option value="parfums">parfums</option>
+        </select>
+        <br>
+        <div id="promotion">
+            <label for="">Promtion</label>
+                <div id="prooption">
+                    <input type="radio" id="promooui" name="btn">
+                    <label for="">Oui</label>
+                    <input type="radio" id="promonon" name="btn">
+                    <label for="">Non</label>
+            </div>
+        </div>
+        <button id="Ajouter" onclick="enter()">Ajouter</button>
+        <br>
+    </form>
+<!--tableau-->
+
+<table  id="table">
+    <tr>
+    <th>Nom</th>
+    <th>Marque</th>
+    <th>Prix</th>
+    <th>Date de production</th>
+    <th>Type</th>
+    <th>Promtion</th>
+    </tr>
+</table>
+
+<style>
+
+
+    body
+    {
+
+        background-image: url(https://img.freepik.com/psd-premium/cosmetiques-naturels-vitamines_23-2148369284.jpg?w=2000);
+    }
+    
+    form
+    {
+        text-align: center;
+        display: grid;
+        margin-left: 30%;
+        margin-right: 30%;    
+    }
+    
+    input
+    
+    {
+    background-color: #11b311;
+    padding: 15px;
+    
+    }
+    #Ajouter
+    
+    {
+    background-color: rgb(21, 201, 45);
+    padding: 15px;
+    margin-top: 20px;
+    margin-left: 150px;
+    margin-right: 150px;
+    
+    }
+    
+    label
+    
+    {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+    
+    
+    #promotion{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    
+    #prooption{
+        display: flex;
+        justify-content: center;
+        background-color: #11b311;
+        padding: 15px;
+        border: solid black;
+    
+    }
+    
+    div
+    {
+    display: flex;
+    }
+    select
+    {
+        background-color: #11b311;
+        padding: 15px;
+        border: solid black;
+    }
+    
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        background-color: #11b311;
+        margin-right: 30px;
+        width: 80%;
+        margin: auto;
+        
+    }
+    
+    tr 
+    {
+        border: 1px solid black;
+        text-align: left;
+        padding: 8px;
+    
+    }
+    
+    </style>   
+        
+
+
+<script>
+
+function enter(){
+
+let name = document.getElementById('nom').value;
+let brand = document.getElementById('marque').value;
+let price = document.getElementById('prix').value;
+let dat = document.getElementById('date').value;
+let select = document.getElementById('select').value;
+let promoyes = document.getElementById('promooui');
+let promono = document.getElementById('promonon');
+let tableau = document.getElementById('table');
+let promochecked
+
+
+
+        let tr = document.createElement('tr');
+        let td1 = document.createElement('td');
+        let td2 = document.createElement('td');
+        let td3 = document.createElement('td');
+        let td4 = document.createElement('td');
+        let td5 = document.createElement('td');
+        let td6 = document.createElement('td');
+
+        if(promoyes.checked){
+        promochecked = "Oui";
+        }else if(promono.checked){
+            promochecked = "Non";
+        }
+
+        let nametd = document.createTextNode(name);
+        let marktd = document.createTextNode(brand);
+        let pricetd = document.createTextNode(price);
+        let datetd = document.createTextNode(dat);
+        let typetd = document.createTextNode(select);
+        let promotd = document.createTextNode(promochecked);
+
+
+        if(name.length > 30 || name.length == 0){
+            alert("le nom n'est pas valider")
+        }else if(brand.length > 30 || brand.length == 0){
+            alert("votre marque n'est pas valider")
+        }else if(price <= 0){
+            alert("le prix n'est pas valider")
+        }else if(dat == ""){
+            alert("la date n'est pas valider")
+        }else if(select == "choisissez un type"){
+            alert("le choix est oligatoire")
+        }
+        else{
+        tableau.appendChild(tr);
+
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        tr.appendChild(td5);
+        tr.appendChild(td6);
+
+
+        td1.appendChild(nametd)
+        td2.appendChild(marktd)
+        td3.appendChild(pricetd)
+        td4.appendChild(datetd)
+        td5.appendChild(typetd)
+        td6.appendChild(promotd)
+
+        document.getElementById('name').value = ""
+        document.getElementById('brand').value =""
+        document.getElementById('price').value =""
+        document.getElementById('dat').value =""
+        document.getElementById('type').value = "choisissez un type"
+        }    
+        }  
+    </script>
+
+
+</body>
+</html>
